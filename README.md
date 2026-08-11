@@ -1,13 +1,11 @@
-# TWR Landing V7 patch
+# TWR Landing V7.1 – Product copy safe-area
 
-Replace/add these files preserving paths:
+This patch only changes `app/globals.css`.
 
-- `app/[lang]/page.jsx`
-- `app/globals.css`
-- `public/assets/delver-mimic.png`
-- `public/assets/command-palantir.png`
-
-V7 changes:
-- Delver and Command Tower product intros are full-bleed illustrated sections with copy over the artwork.
-- Existing feature grids and 5-slot media galleries remain below each full-bleed intro.
-- Main landing sections use gentle CSS scroll snapping (`y proximity`) rather than JavaScript scroll locking.
+Changes:
+- Wider desktop safe margins for Delver / Command Tower hero copy.
+- Copy width reduced to max 500px / ~42vw.
+- Localized directional gradient behind copy instead of a heavy full-image shade.
+- Delver reading zone stays on the left; Command Tower stays on the right.
+- Mobile uses a protected lower reading band with 18–20px side margins.
+- No changes to animations, i18n, scroll snapping, galleries, links, or page structure.

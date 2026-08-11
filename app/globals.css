@@ -909,3 +909,135 @@ html {
 @media (max-width: 600px) {
   .product-hero-inner { min-height: 92svh; }
 }
+
+/* =========================
+   V7.1 · product copy safe-area
+   ========================= */
+@media (min-width: 901px) {
+  .product-hero .product-hero-inner {
+    width: min(calc(100% - 120px), 1180px);
+    margin-inline: auto;
+  }
+
+  .product-copy-overlay {
+    position: relative;
+    width: min(42vw, 500px);
+    max-width: 500px;
+    padding: 42px 0;
+    z-index: 1;
+  }
+
+  .product-copy-overlay::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: -44px;
+    bottom: -44px;
+    width: min(64vw, 780px);
+    pointer-events: none;
+    filter: blur(2px);
+  }
+
+  .delver-product-hero .product-copy-overlay::before {
+    left: -90px;
+    background: linear-gradient(90deg,
+      rgba(3,8,5,.90) 0%,
+      rgba(3,8,5,.72) 38%,
+      rgba(3,8,5,.36) 68%,
+      transparent 100%);
+  }
+
+  .command-product-hero .product-copy-overlay::before {
+    right: -90px;
+    background: linear-gradient(270deg,
+      rgba(3,8,13,.91) 0%,
+      rgba(3,8,13,.74) 38%,
+      rgba(3,8,13,.38) 68%,
+      transparent 100%);
+  }
+
+  /* Keep the artwork visible outside the protected reading zone. */
+  .delver-product-hero .product-hero-shade {
+    background:
+      linear-gradient(0deg, rgba(4,9,6,.62) 0%, rgba(4,9,6,.18) 36%, transparent 66%),
+      linear-gradient(90deg, rgba(4,9,6,.38) 0%, rgba(4,9,6,.13) 38%, transparent 62%);
+  }
+
+  .command-product-hero .product-hero-shade {
+    background:
+      linear-gradient(0deg, rgba(4,10,15,.60) 0%, rgba(4,10,15,.16) 38%, transparent 68%),
+      linear-gradient(270deg, rgba(4,10,15,.42) 0%, rgba(4,10,15,.14) 40%, transparent 64%);
+  }
+}
+
+@media (max-width: 900px) {
+  .product-hero .product-hero-inner {
+    width: min(calc(100% - 40px), 760px);
+    margin-inline: auto;
+    align-items: flex-end;
+    padding-bottom: 72px;
+  }
+
+  .product-copy-overlay {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    padding: 72px 0 8px;
+    margin: 0 !important;
+    z-index: 1;
+  }
+
+  .product-copy-overlay::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    left: -24px;
+    right: -24px;
+    bottom: -28px;
+    top: 0;
+    pointer-events: none;
+    background: linear-gradient(0deg,
+      rgba(3,8,7,.96) 0%,
+      rgba(3,8,7,.88) 52%,
+      rgba(3,8,7,.52) 78%,
+      transparent 100%);
+  }
+
+  .command-product-hero .product-copy-overlay::before {
+    background: linear-gradient(0deg,
+      rgba(3,8,13,.97) 0%,
+      rgba(3,8,13,.90) 52%,
+      rgba(3,8,13,.54) 78%,
+      transparent 100%);
+  }
+
+  .product-hero-shade,
+  .command-product-hero .product-hero-shade {
+    background: linear-gradient(0deg, rgba(3,8,7,.60) 0%, rgba(3,8,7,.08) 56%, transparent 82%);
+  }
+
+  .command-product-hero .product-hero-shade {
+    background: linear-gradient(0deg, rgba(3,8,13,.62) 0%, rgba(3,8,13,.08) 56%, transparent 82%);
+  }
+}
+
+@media (max-width: 600px) {
+  .product-hero .product-hero-inner {
+    width: calc(100% - 36px);
+    padding-bottom: 54px;
+  }
+
+  .product-copy-overlay {
+    padding-top: 78px;
+  }
+
+  .product-copy-overlay::before {
+    left: -18px;
+    right: -18px;
+  }
+
+  .product-copy-overlay .section-lede,
+  .product-copy-overlay .pull-quote {
+    max-width: 100%;
+  }
+}
