@@ -1,21 +1,13 @@
-# TWR Landing V6
+# TWR Landing V7 patch
 
-Bilingual Next.js landing page for TWR Delver + Command Tower.
+Replace/add these files preserving paths:
 
-## Locales
-- `/en`
-- `/pt-BR`
-- `/` detects `Accept-Language` and redirects to Portuguese when the browser prefers Portuguese, otherwise English.
+- `app/[lang]/page.jsx`
+- `app/globals.css`
+- `public/assets/delver-mimic.png`
+- `public/assets/command-palantir.png`
 
-## V6 changes
-- Header navigation: Manifesto / Delver / Command Tower.
-- Instagram moved to a compact icon action on the right.
-- EN/PT language switch added to the header.
-- Full page copy moved into `dictionaries/content.js`.
-- Existing hero scroll animation, CRPG manifesto, Jacquard subtitles and media-gallery slots preserved.
-
-## Run
-```bash
-npm install
-npm run dev
-```
+V7 changes:
+- Delver and Command Tower product intros are full-bleed illustrated sections with copy over the artwork.
+- Existing feature grids and 5-slot media galleries remain below each full-bleed intro.
+- Main landing sections use gentle CSS scroll snapping (`y proximity`) rather than JavaScript scroll locking.

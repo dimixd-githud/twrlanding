@@ -47,6 +47,43 @@ function MediaGallery({ product, slotLabel }) {
   );
 }
 
+function ProductHero({
+  className,
+  background,
+  logo,
+  logoClass,
+  logoAlt,
+  eyebrow,
+  titleTop,
+  titleBottom,
+  lede,
+  quote,
+  cta,
+  ctaSymbol,
+}) {
+  return (
+    <div
+      className={`product-hero ${className}`}
+      style={{ '--product-bg': `url("${background}")` }}
+    >
+      <div className="product-hero-image" aria-hidden="true" />
+      <div className="product-hero-shade" aria-hidden="true" />
+      <div className="product-hero-grain" aria-hidden="true" />
+      <div className="shell product-hero-inner">
+        <div className="product-copy product-copy-overlay">
+          <p className="eyebrow">{eyebrow}</p>
+          <img className={`product-logo ${logoClass}`} src={logo} alt={logoAlt} />
+          <h2 className="section-subtitle">{titleTop}<br />{titleBottom}</h2>
+          <p className="section-lede">{lede}</p>
+          {quote ? <p className="pull-quote">{quote}</p> : null}
+          <a className="text-link" href="#">{cta} <span>{ctaSymbol}</span></a>
+        </div>
+      </div>
+      <div className="product-hero-scrollhint" aria-hidden="true"><i /></div>
+    </div>
+  );
+}
+
 export default async function Home({ params }) {
   const { lang } = await params;
   if (!SUPPORTED.includes(lang)) notFound();
@@ -58,52 +95,56 @@ export default async function Home({ params }) {
       <ScrollHero copy={copy.hero} />
       <ManifestoSection copy={copy.manifesto} />
 
-      <section className="product-section" id="delver">
-        <div className="shell product-grid">
-          <div className="product-copy">
-            <p className="eyebrow">{copy.delver.eyebrow}</p>
-            <img className="product-logo delver-logo" src="/assets/delver-logo.svg" alt="TWR Delver" />
-            <h2 className="section-subtitle">{copy.delver.titleTop}<br />{copy.delver.titleBottom}</h2>
-            <p className="section-lede">{copy.delver.lede}</p>
-            <a className="text-link" href="#">{copy.delver.cta} <span>↗</span></a>
+      <section className="product-section snap-section" id="delver">
+        <ProductHero
+          className="delver-product-hero"
+          background="/assets/delver-mimic.png"
+          logo="/assets/delver-logo.svg"
+          logoClass="delver-logo"
+          logoAlt="TWR Delver"
+          eyebrow={copy.delver.eyebrow}
+          titleTop={copy.delver.titleTop}
+          titleBottom={copy.delver.titleBottom}
+          lede={copy.delver.lede}
+          cta={copy.delver.cta}
+          ctaSymbol="↗"
+        />
+        <div className="product-content">
+          <div className="shell"><FeatureGrid items={copy.delver.features} /></div>
+          <div className="shell gallery-block">
+            <p className="eyebrow gallery-eyebrow">{copy.delver.galleryEyebrow}</p>
+            <h3 className="gallery-title section-subtitle">{copy.delver.galleryTitle}</h3>
+            <MediaGallery product="Delver" slotLabel={copy.gallerySlot} />
           </div>
-          <div className="art-panel art-delver">
-            <img src="/assets/delver-art.png" alt="Pixel art adventurer approaching a distant fantasy fortress" />
-            <div className="art-label">{copy.delver.artLabel}</div>
-          </div>
-        </div>
-        <div className="shell"><FeatureGrid items={copy.delver.features} /></div>
-        <div className="shell gallery-block">
-          <p className="eyebrow gallery-eyebrow">{copy.delver.galleryEyebrow}</p>
-          <h3 className="gallery-title section-subtitle">{copy.delver.galleryTitle}</h3>
-          <MediaGallery product="Delver" slotLabel={copy.gallerySlot} />
         </div>
       </section>
 
-      <section className="product-section command-section" id="command-tower">
-        <div className="shell product-grid reverse">
-          <div className="product-copy">
-            <p className="eyebrow">{copy.command.eyebrow}</p>
-            <img className="product-logo command-logo" src="/assets/command-tower-logo.svg" alt="TWR Command Tower" />
-            <h2 className="section-subtitle">{copy.command.titleTop}<br />{copy.command.titleBottom}</h2>
-            <p className="section-lede">{copy.command.lede}</p>
-            <p className="pull-quote">{copy.command.quote}</p>
-            <a className="text-link" href="#">{copy.command.cta} <span>↓</span></a>
+      <section className="product-section command-section snap-section" id="command-tower">
+        <ProductHero
+          className="command-product-hero"
+          background="/assets/command-palantir.png"
+          logo="/assets/command-tower-logo.svg"
+          logoClass="command-logo"
+          logoAlt="TWR Command Tower"
+          eyebrow={copy.command.eyebrow}
+          titleTop={copy.command.titleTop}
+          titleBottom={copy.command.titleBottom}
+          lede={copy.command.lede}
+          quote={copy.command.quote}
+          cta={copy.command.cta}
+          ctaSymbol="↓"
+        />
+        <div className="product-content">
+          <div className="shell"><FeatureGrid items={copy.command.features} /></div>
+          <div className="shell gallery-block">
+            <p className="eyebrow gallery-eyebrow">{copy.command.galleryEyebrow}</p>
+            <h3 className="gallery-title section-subtitle">{copy.command.galleryTitle}</h3>
+            <MediaGallery product="Command Tower" slotLabel={copy.gallerySlot} />
           </div>
-          <div className="art-panel art-command">
-            <img src="/assets/command-art.png" alt="Pixel art command terrace overlooking a monumental fantasy fortress" />
-            <div className="art-label">{copy.command.artLabel}</div>
-          </div>
-        </div>
-        <div className="shell"><FeatureGrid items={copy.command.features} /></div>
-        <div className="shell gallery-block">
-          <p className="eyebrow gallery-eyebrow">{copy.command.galleryEyebrow}</p>
-          <h3 className="gallery-title section-subtitle">{copy.command.galleryTitle}</h3>
-          <MediaGallery product="Command Tower" slotLabel={copy.gallerySlot} />
         </div>
       </section>
 
-      <section className="community-section" id="community">
+      <section className="community-section snap-section" id="community">
         <div className="shell community-inner">
           <div>
             <p className="eyebrow">{copy.community.eyebrow}</p>
@@ -116,7 +157,7 @@ export default async function Home({ params }) {
         </div>
       </section>
 
-      <section className="final-cta">
+      <section className="final-cta snap-section">
         <div className="shell final-inner">
           <img src="/assets/twr-logo.svg" alt="TWR" />
           <p className="eyebrow">{copy.final.eyebrow}</p>
