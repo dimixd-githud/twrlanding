@@ -1,4 +1,5 @@
 import ScrollHero from '../components/ScrollHero';
+import ManifestoSection from '../components/ManifestoSection';
 
 const delverFeatures = [
   ['Character Builder', 'Guided character creation and level progression.'],
