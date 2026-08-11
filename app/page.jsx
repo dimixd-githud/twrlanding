@@ -54,6 +54,7 @@ export default function Home() {
     <main>
       <Header />
       <ScrollHero />
+      <ManifestoSection />
 
       <section className="product-section" id="delver">
         <div className="shell product-grid">
