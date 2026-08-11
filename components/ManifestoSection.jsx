@@ -26,12 +26,6 @@ export default function ManifestoSection() {
     const node = sectionRef.current;
     if (!node) return;
 
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduceMotion) {
-      setActive(true);
-      setTypedTitle(TITLE);
-      return;
-    }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -50,11 +44,6 @@ export default function ManifestoSection() {
   useEffect(() => {
     if (!active) return;
 
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduceMotion) {
-      setTypedTitle(TITLE);
-      return;
-    }
 
     let index = 0;
     let interval;

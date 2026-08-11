@@ -37,8 +37,6 @@ export default function ScrollHero() {
 
     video.pause();
     video.currentTime = 0;
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
     const setReveal = (node, value, distance = 28, blur = 6) => {
       if (!node) return;
       const eased = easeOut(value);
@@ -60,20 +58,10 @@ export default function ScrollHero() {
         targetTimeRef.current = progress * Math.max(video.duration - 0.04, 0);
       }
 
-      if (reduced) {
-        [eyebrowRef.current, titleRef.current, ledeRef.current, buttonsRef.current].forEach((node) => {
-          if (node) {
-            node.style.opacity = '1';
-            node.style.transform = 'none';
-            node.style.filter = 'none';
-          }
-        });
-      } else {
-        setReveal(eyebrowRef.current, range(progress, 0.035, 0.13), 16, 3);
-        setReveal(titleRef.current, range(progress, 0.08, 0.24), 42, 8);
-        setReveal(ledeRef.current, range(progress, 0.19, 0.34), 28, 5);
-        setReveal(buttonsRef.current, range(progress, 0.29, 0.43), 20, 3);
-      }
+      setReveal(eyebrowRef.current, range(progress, 0.035, 0.13), 16, 3);
+      setReveal(titleRef.current, range(progress, 0.08, 0.24), 42, 8);
+      setReveal(ledeRef.current, range(progress, 0.19, 0.34), 28, 5);
+      setReveal(buttonsRef.current, range(progress, 0.29, 0.43), 20, 3);
 
       if (cueRef.current) {
         cueRef.current.style.opacity = String(clamp(0.72 - progress * 2.6, 0, 0.72));
