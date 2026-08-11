@@ -58,10 +58,10 @@ export default function ScrollHero() {
         targetTimeRef.current = progress * Math.max(video.duration - 0.04, 0);
       }
 
-      setReveal(eyebrowRef.current, range(progress, 0.035, 0.13), 16, 3);
-      setReveal(titleRef.current, range(progress, 0.08, 0.24), 42, 8);
-      setReveal(ledeRef.current, range(progress, 0.19, 0.34), 28, 5);
-      setReveal(buttonsRef.current, range(progress, 0.29, 0.43), 20, 3);
+      setReveal(eyebrowRef.current, range(progress, 0.30, 0.46), 18, 4);
+      setReveal(titleRef.current, range(progress, 0.34, 0.60), 46, 9);
+      setReveal(ledeRef.current, range(progress, 0.56, 0.70), 30, 6);
+      setReveal(buttonsRef.current, range(progress, 0.68, 0.82), 22, 4);
 
       if (cueRef.current) {
         cueRef.current.style.opacity = String(clamp(0.72 - progress * 2.6, 0, 0.72));

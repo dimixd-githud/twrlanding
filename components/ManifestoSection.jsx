@@ -52,8 +52,8 @@ export default function ManifestoSection() {
         index += 1;
         setTypedTitle(TITLE.slice(0, index));
         if (index >= TITLE.length) window.clearInterval(interval);
-      }, 25);
-    }, 520);
+      }, 72);
+    }, 1000);
 
     return () => {
       window.clearTimeout(startDelay);
@@ -86,7 +86,7 @@ export default function ManifestoSection() {
 
           <div className="dialog-copy">
             {manifestoLines.map((line, index) => (
-              <p key={line} style={{ '--reveal-delay': `${1.45 + index * 0.42}s` }}>
+              <p key={line} style={{ '--reveal-delay': `${4.0 + index * 1.15}s` }}>
                 {line}
               </p>
             ))}
@@ -99,7 +99,7 @@ export default function ManifestoSection() {
                 <div
                   className="manifesto-icon"
                   key={name}
-                  style={{ '--icon-delay': `${2.55 + index * 0.12}s` }}
+                  style={{ '--icon-delay': `${7.35 + index * 0.28}s` }}
                 >
                   <div className="manifesto-icon-frame">
                     <img src={`/assets/icons/${name}.png`} alt="" />
@@ -110,7 +110,7 @@ export default function ManifestoSection() {
             </div>
           </div>
 
-          <p className="manifesto-closing" style={{ '--reveal-delay': '3.15s' }}>
+          <p className="manifesto-closing" style={{ '--reveal-delay': '8.7s' }}>
             Less tools fighting for your attention. <strong>More room for the story.</strong>
           </p>
         </div>

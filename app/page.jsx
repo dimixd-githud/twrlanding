@@ -1,4 +1,5 @@
 import ScrollHero from '../components/ScrollHero';
+import ScrollHeader from '../components/ScrollHeader';
 import ManifestoSection from '../components/ManifestoSection';
 
 const delverFeatures = [
@@ -19,22 +20,6 @@ const commandFeatures = [
   ['Campaign Compendium', 'Bring campaign knowledge in from Notion or Obsidian.'],
 ];
 
-function Header() {
-  return (
-    <header className="site-header">
-      <a className="brand" href="#top" aria-label="TWR home">
-        <img src="/assets/twr-logo.svg" alt="TWR" />
-      </a>
-      <nav aria-label="Primary navigation">
-        <a href="#delver">Delver</a>
-        <a href="#command-tower">Command Tower</a>
-        <a href="https://www.instagram.com/commandtwr" target="_blank" rel="noreferrer">Instagram</a>
-      </nav>
-      <a className="header-cta" href="#delver">Open Delver</a>
-    </header>
-  );
-}
-
 function FeatureGrid({ items }) {
   return (
     <div className="feature-grid">
@@ -49,10 +34,23 @@ function FeatureGrid({ items }) {
   );
 }
 
+function MediaGallery({ product }) {
+  return (
+    <div className="media-gallery" aria-label={`${product} media gallery`}>
+      {[1, 2, 3, 4, 5].map((slot) => (
+        <div className={`media-slot media-slot-${slot}`} key={slot}>
+          <span>{String(slot).padStart(2, '0')}</span>
+          <p>IMAGE / VIDEO</p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 export default function Home() {
   return (
     <main>
-      <Header />
+      <ScrollHeader />
       <ScrollHero />
       <ManifestoSection />
 
@@ -61,7 +59,7 @@ export default function Home() {
           <div className="product-copy">
             <p className="eyebrow">01 / FOR PLAYERS</p>
             <img className="product-logo delver-logo" src="/assets/delver-logo.svg" alt="TWR Delver" />
-            <h2>Your character.<br />Ready for the table.</h2>
+            <h2 className="section-subtitle">Your character.<br />Ready for the table.</h2>
             <p className="section-lede">
               Create, manage and play your character without turning the session into admin work. Delver connects the sheet to the tools you actually use at the table.
             </p>
@@ -73,6 +71,11 @@ export default function Home() {
           </div>
         </div>
         <div className="shell"><FeatureGrid items={delverFeatures} /></div>
+        <div className="shell gallery-block">
+          <p className="eyebrow gallery-eyebrow">DELVER IN ACTION</p>
+          <h3 className="gallery-title section-subtitle">From character creation to the table.</h3>
+          <MediaGallery product="Delver" />
+        </div>
       </section>
 
       <section className="product-section command-section" id="command-tower">
@@ -80,7 +83,7 @@ export default function Home() {
           <div className="product-copy">
             <p className="eyebrow">02 / FOR DUNGEON MASTERS</p>
             <img className="product-logo command-logo" src="/assets/command-tower-logo.svg" alt="TWR Command Tower" />
-            <h2>Run the game.<br />Not the software.</h2>
+            <h2 className="section-subtitle">Run the game.<br />Not the software.</h2>
             <p className="section-lede">
               A modular workspace for the tools you need during a session, without asking you to move your entire campaign into another platform.
             </p>
@@ -93,13 +96,18 @@ export default function Home() {
           </div>
         </div>
         <div className="shell"><FeatureGrid items={commandFeatures} /></div>
+        <div className="shell gallery-block">
+          <p className="eyebrow gallery-eyebrow">COMMAND TOWER IN ACTION</p>
+          <h3 className="gallery-title section-subtitle">A clearer view of the whole session.</h3>
+          <MediaGallery product="Command Tower" />
+        </div>
       </section>
 
       <section className="community-section" id="community">
         <div className="shell community-inner">
           <div>
             <p className="eyebrow">BEHIND THE SCREEN</p>
-            <h2>We’re building<br />TWR in public.</h2>
+            <h2 className="section-subtitle">We’re building<br />TWR in public.</h2>
           </div>
           <div className="community-copy">
             <p>Devlogs, new tools, design decisions and the absurdly specific situations that only happen at a TTRPG table.</p>
@@ -112,7 +120,7 @@ export default function Home() {
         <div className="shell final-inner">
           <img src="/assets/twr-logo.svg" alt="TWR" />
           <p className="eyebrow">TWO APPS. ONE TABLE.</p>
-          <h2>Make room for the game.</h2>
+          <h2 className="section-subtitle">Make room for the game.</h2>
           <div className="button-row centered">
             <a className="button button-primary" href="#">Open Delver</a>
             <a className="button button-ghost" href="#">Download Command Tower</a>
