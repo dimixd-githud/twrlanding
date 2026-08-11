@@ -1,18 +1,21 @@
-# TWR Landing V5 patch
+# TWR Landing V6
 
-Replace the matching files in the repository with these versions.
+Bilingual Next.js landing page for TWR Delver + Command Tower.
 
-Changes:
-- delayed header reveal tied to hero scroll
-- longer pure-video opening before hero copy appears
-- slower hero headline reveal
-- slower CRPG manifesto typing/reveal sequence
-- main heading sizes reduced by ~20%
-- Jacquard 12 used for section subtitles
-- 5-slot media gallery added to both Delver and Command Tower sections
-- galleries become horizontal swipe strips on mobile
+## Locales
+- `/en`
+- `/pt-BR`
+- `/` detects `Accept-Language` and redirects to Portuguese when the browser prefers Portuguese, otherwise English.
 
-New file:
-- components/ScrollHeader.jsx
+## V6 changes
+- Header navigation: Manifesto / Delver / Command Tower.
+- Instagram moved to a compact icon action on the right.
+- EN/PT language switch added to the header.
+- Full page copy moved into `dictionaries/content.js`.
+- Existing hero scroll animation, CRPG manifesto, Jacquard subtitles and media-gallery slots preserved.
 
-No media needs to be added to the gallery yet. Slots are placeholders and can later contain <img> or <video> elements.
+## Run
+```bash
+npm install
+npm run dev
+```

@@ -1,0 +1,145 @@
+import { notFound } from 'next/navigation';
+import ScrollHero from '../../components/ScrollHero';
+import ScrollHeader from '../../components/ScrollHeader';
+import ManifestoSection from '../../components/ManifestoSection';
+import { getDictionary } from '../../dictionaries/content';
+
+const SUPPORTED = ['en', 'pt-BR'];
+const INSTAGRAM_URL = 'https://www.instagram.com/commandtwr';
+
+export function generateStaticParams() {
+  return SUPPORTED.map((lang) => ({ lang }));
+}
+
+export async function generateMetadata({ params }) {
+  const { lang } = await params;
+  const copy = getDictionary(lang);
+  return {
+    title: `TWR | ${copy.final.title}`,
+    description: copy.hero.lede,
+  };
+}
+
+function FeatureGrid({ items }) {
+  return (
+    <div className="feature-grid">
+      {items.map(([title, text], index) => (
+        <article className="feature-card" key={title}>
+          <span>{String(index + 1).padStart(2, '0')}</span>
+          <h3>{title}</h3>
+          <p>{text}</p>
+        </article>
+      ))}
+    </div>
+  );
+}
+
+function MediaGallery({ product, slotLabel }) {
+  return (
+    <div className="media-gallery" aria-label={`${product} media gallery`}>
+      {[1, 2, 3, 4, 5].map((slot) => (
+        <div className={`media-slot media-slot-${slot}`} key={slot}>
+          <span>{String(slot).padStart(2, '0')}</span>
+          <p>{slotLabel}</p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+export default async function Home({ params }) {
+  const { lang } = await params;
+  if (!SUPPORTED.includes(lang)) notFound();
+  const copy = getDictionary(lang);
+
+  return (
+    <main>
+      <ScrollHeader lang={lang} copy={copy.nav} alternateLocale={copy.alternateLocale} alternateLabel={copy.alternateLabel} instagramUrl={INSTAGRAM_URL} />
+      <ScrollHero copy={copy.hero} />
+      <ManifestoSection copy={copy.manifesto} />
+
+      <section className="product-section" id="delver">
+        <div className="shell product-grid">
+          <div className="product-copy">
+            <p className="eyebrow">{copy.delver.eyebrow}</p>
+            <img className="product-logo delver-logo" src="/assets/delver-logo.svg" alt="TWR Delver" />
+            <h2 className="section-subtitle">{copy.delver.titleTop}<br />{copy.delver.titleBottom}</h2>
+            <p className="section-lede">{copy.delver.lede}</p>
+            <a className="text-link" href="#">{copy.delver.cta} <span>↗</span></a>
+          </div>
+          <div className="art-panel art-delver">
+            <img src="/assets/delver-art.png" alt="Pixel art adventurer approaching a distant fantasy fortress" />
+            <div className="art-label">{copy.delver.artLabel}</div>
+          </div>
+        </div>
+        <div className="shell"><FeatureGrid items={copy.delver.features} /></div>
+        <div className="shell gallery-block">
+          <p className="eyebrow gallery-eyebrow">{copy.delver.galleryEyebrow}</p>
+          <h3 className="gallery-title section-subtitle">{copy.delver.galleryTitle}</h3>
+          <MediaGallery product="Delver" slotLabel={copy.gallerySlot} />
+        </div>
+      </section>
+
+      <section className="product-section command-section" id="command-tower">
+        <div className="shell product-grid reverse">
+          <div className="product-copy">
+            <p className="eyebrow">{copy.command.eyebrow}</p>
+            <img className="product-logo command-logo" src="/assets/command-tower-logo.svg" alt="TWR Command Tower" />
+            <h2 className="section-subtitle">{copy.command.titleTop}<br />{copy.command.titleBottom}</h2>
+            <p className="section-lede">{copy.command.lede}</p>
+            <p className="pull-quote">{copy.command.quote}</p>
+            <a className="text-link" href="#">{copy.command.cta} <span>↓</span></a>
+          </div>
+          <div className="art-panel art-command">
+            <img src="/assets/command-art.png" alt="Pixel art command terrace overlooking a monumental fantasy fortress" />
+            <div className="art-label">{copy.command.artLabel}</div>
+          </div>
+        </div>
+        <div className="shell"><FeatureGrid items={copy.command.features} /></div>
+        <div className="shell gallery-block">
+          <p className="eyebrow gallery-eyebrow">{copy.command.galleryEyebrow}</p>
+          <h3 className="gallery-title section-subtitle">{copy.command.galleryTitle}</h3>
+          <MediaGallery product="Command Tower" slotLabel={copy.gallerySlot} />
+        </div>
+      </section>
+
+      <section className="community-section" id="community">
+        <div className="shell community-inner">
+          <div>
+            <p className="eyebrow">{copy.community.eyebrow}</p>
+            <h2 className="section-subtitle">{copy.community.titleTop}<br />{copy.community.titleBottom}</h2>
+          </div>
+          <div className="community-copy">
+            <p>{copy.community.copy}</p>
+            <a className="button button-light" href={INSTAGRAM_URL} target="_blank" rel="noreferrer">{copy.community.cta}</a>
+          </div>
+        </div>
+      </section>
+
+      <section className="final-cta">
+        <div className="shell final-inner">
+          <img src="/assets/twr-logo.svg" alt="TWR" />
+          <p className="eyebrow">{copy.final.eyebrow}</p>
+          <h2 className="section-subtitle">{copy.final.title}</h2>
+          <div className="button-row centered">
+            <a className="button button-primary" href="#">{copy.final.delverCta}</a>
+            <a className="button button-ghost" href="#">{copy.final.commandCta}</a>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <div className="shell footer-inner">
+          <span>© 2026 TWR</span>
+          <div>
+            <a href={`/${lang}#manifesto`}>{copy.nav.manifesto}</a>
+            <a href={`/${lang}#delver`}>Delver</a>
+            <a href={`/${lang}#command-tower`}>Command Tower</a>
+            <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer">Instagram</a>
+          </div>
+          <span>{copy.footerTagline}</span>
+        </div>
+      </footer>
+    </main>
+  );
+}
