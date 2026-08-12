@@ -60,6 +60,7 @@ function ProductHero({
   quote,
   cta,
   ctaSymbol,
+  ctaHref,
 }) {
   return (
     <div
@@ -69,17 +70,39 @@ function ProductHero({
       <div className="product-hero-image" aria-hidden="true" />
       <div className="product-hero-shade" aria-hidden="true" />
       <div className="product-hero-grain" aria-hidden="true" />
+
       <div className="shell product-hero-inner">
         <div className="product-copy product-copy-overlay">
           <p className="eyebrow">{eyebrow}</p>
-          <img className={`product-logo ${logoClass}`} src={logo} alt={logoAlt} />
-          <h2 className="section-subtitle">{titleTop}<br />{titleBottom}</h2>
+
+          <img
+            className={`product-logo ${logoClass}`}
+            src={logo}
+            alt={logoAlt}
+          />
+
+          <h2 className="section-subtitle">
+            {titleTop}
+            <br />
+            {titleBottom}
+          </h2>
+
           <p className="section-lede">{lede}</p>
+
           {quote ? <p className="pull-quote">{quote}</p> : null}
-          <a className="text-link" href="#">{cta} <span>{ctaSymbol}</span></a>
+
+          <a
+            className="text-link"
+            href={ctaHref}
+          >
+            {cta} <span>{ctaSymbol}</span>
+          </a>
         </div>
       </div>
-      <div className="product-hero-scrollhint" aria-hidden="true"><i /></div>
+
+      <div className="product-hero-scrollhint" aria-hidden="true">
+        <i />
+      </div>
     </div>
   );
 }
@@ -108,6 +131,8 @@ export default async function Home({ params }) {
           lede={copy.delver.lede}
           cta={copy.delver.cta}
           ctaSymbol="↗"
+          ctaHref="http://twr-delver.vercel.app/"
+          />
         />
         <div className="product-content">
           <div className="shell"><FeatureGrid items={copy.delver.features} /></div>
@@ -133,6 +158,8 @@ export default async function Home({ params }) {
           quote={copy.command.quote}
           cta={copy.command.cta}
           ctaSymbol="↓"
+          ctaHref="https://github.com/dimixd-githud/twr-command-tower-releases/releases/download/v1.1.1-alpha/TWR.-.Command.Tower.1.1.1-alpha.exe"
+          />
         />
         <div className="product-content">
           <div className="shell"><FeatureGrid items={copy.command.features} /></div>
