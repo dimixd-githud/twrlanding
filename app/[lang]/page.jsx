@@ -6,6 +6,8 @@ import { getDictionary } from '../../dictionaries/content';
 
 const SUPPORTED = ['en', 'pt-BR'];
 const INSTAGRAM_URL = 'https://www.instagram.com/commandtwr';
+const DELVER_URL = 'https://twr-delver.vercel.app/';
+const COMMAND_TOWER_DOWNLOAD_URL = 'https://github.com/dimixd-githud/twr-command-tower-releases/releases/download/v1.1.1-alpha/TWR.-.Command.Tower.1.1.1-alpha.exe';
 
 export function generateStaticParams() {
   return SUPPORTED.map((lang) => ({ lang }));
@@ -70,39 +72,17 @@ function ProductHero({
       <div className="product-hero-image" aria-hidden="true" />
       <div className="product-hero-shade" aria-hidden="true" />
       <div className="product-hero-grain" aria-hidden="true" />
-
       <div className="shell product-hero-inner">
         <div className="product-copy product-copy-overlay">
           <p className="eyebrow">{eyebrow}</p>
-
-          <img
-            className={`product-logo ${logoClass}`}
-            src={logo}
-            alt={logoAlt}
-          />
-
-          <h2 className="section-subtitle">
-            {titleTop}
-            <br />
-            {titleBottom}
-          </h2>
-
+          <img className={`product-logo ${logoClass}`} src={logo} alt={logoAlt} />
+          <h2 className="section-subtitle">{titleTop}<br />{titleBottom}</h2>
           <p className="section-lede">{lede}</p>
-
           {quote ? <p className="pull-quote">{quote}</p> : null}
-
-          <a
-            className="text-link"
-            href={ctaHref}
-          >
-            {cta} <span>{ctaSymbol}</span>
-          </a>
+          <a className="text-link" href={ctaHref}>{cta} <span>{ctaSymbol}</span></a>
         </div>
       </div>
-
-      <div className="product-hero-scrollhint" aria-hidden="true">
-        <i />
-      </div>
+      <div className="product-hero-scrollhint" aria-hidden="true"><i /></div>
     </div>
   );
 }
@@ -115,7 +95,7 @@ export default async function Home({ params }) {
   return (
     <main>
       <ScrollHeader lang={lang} copy={copy.nav} alternateLocale={copy.alternateLocale} alternateLabel={copy.alternateLabel} instagramUrl={INSTAGRAM_URL} />
-      <ScrollHero copy={copy.hero} />
+      <ScrollHero copy={copy.hero} delverUrl={DELVER_URL} commandTowerUrl={COMMAND_TOWER_DOWNLOAD_URL} />
       <ManifestoSection copy={copy.manifesto} />
 
       <section className="product-section snap-section" id="delver">
@@ -131,8 +111,7 @@ export default async function Home({ params }) {
           lede={copy.delver.lede}
           cta={copy.delver.cta}
           ctaSymbol="↗"
-          ctaHref="http://twr-delver.vercel.app/"
-          />
+          ctaHref={DELVER_URL}
         />
         <div className="product-content">
           <div className="shell"><FeatureGrid items={copy.delver.features} /></div>
@@ -158,8 +137,7 @@ export default async function Home({ params }) {
           quote={copy.command.quote}
           cta={copy.command.cta}
           ctaSymbol="↓"
-          ctaHref="https://github.com/dimixd-githud/twr-command-tower-releases/releases/download/v1.1.1-alpha/TWR.-.Command.Tower.1.1.1-alpha.exe"
-          />
+          ctaHref={COMMAND_TOWER_DOWNLOAD_URL}
         />
         <div className="product-content">
           <div className="shell"><FeatureGrid items={copy.command.features} /></div>
@@ -190,8 +168,8 @@ export default async function Home({ params }) {
           <p className="eyebrow">{copy.final.eyebrow}</p>
           <h2 className="section-subtitle">{copy.final.title}</h2>
           <div className="button-row centered">
-            <a className="button button-primary" href="http://twr-delver.vercel.app/">{copy.final.delverCta}</a>
-            <a className="button button-ghost" href="https://github.com/dimixd-githud/twr-command-tower-releases/releases/download/v1.1.1-alpha/TWR.-.Command.Tower.1.1.1-alpha.exe">{copy.final.commandCta}</a>
+            <a className="button button-primary" href={DELVER_URL}>{copy.final.delverCta}</a>
+            <a className="button button-ghost" href={COMMAND_TOWER_DOWNLOAD_URL}>{copy.final.commandCta}</a>
           </div>
         </div>
       </section>

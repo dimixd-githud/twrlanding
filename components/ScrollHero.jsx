@@ -11,7 +11,7 @@ const clamp = (value, min = 0, max = 1) => Math.min(Math.max(value, min), max);
 const range = (progress, start, end) => clamp((progress - start) / (end - start));
 const easeOut = (t) => 1 - Math.pow(1 - t, 3);
 
-export default function ScrollHero({ copy }) {
+export default function ScrollHero({ copy, delverUrl, commandTowerUrl }) {
   const sectionRef = useRef(null);
   const videoRef = useRef(null);
   const eyebrowRef = useRef(null);
@@ -115,8 +115,8 @@ export default function ScrollHero({ copy }) {
           <h1 className="hero-reveal" ref={titleRef}>{copy.titleTop}<br />{copy.titleBottom}</h1>
           <p className="hero-lede hero-reveal" ref={ledeRef}>{copy.lede}</p>
           <div className="button-row hero-reveal" ref={buttonsRef}>
-            <a className="button button-primary" href="#command-tower">{copy.commandCta}</a>
-            <a className="button button-ghost" href="#delver">{copy.delverCta}</a>
+            <a className="button button-primary" href={commandTowerUrl}>{copy.commandCta}</a>
+            <a className="button button-ghost" href={delverUrl}>{copy.delverCta}</a>
           </div>
         </div>
         <div className="scroll-cue" ref={cueRef} aria-hidden="true"><span>{copy.scrollCue}</span><i /></div>
