@@ -163,8 +163,8 @@ export default async function Home({ params }) {
           <p className="eyebrow">{copy.final.eyebrow}</p>
           <h2 className="section-subtitle">{copy.final.title}</h2>
           <div className="button-row centered">
-            <a className="button button-primary" href="#">{copy.final.delverCta}</a>
-            <a className="button button-ghost" href="#">{copy.final.commandCta}</a>
+            <a className="button button-primary" href="http://twr-delver.vercel.app/">{copy.final.delverCta}</a>
+            <a className="button button-ghost" href="https://github.com/dimixd-githud/twr-command-tower-releases/releases/download/v1.1.1-alpha/TWR.-.Command.Tower.1.1.1-alpha.exe">{copy.final.commandCta}</a>
           </div>
         </div>
       </section>
