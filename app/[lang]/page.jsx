@@ -7,7 +7,7 @@ import { getDictionary } from '../../dictionaries/content';
 const SUPPORTED = ['en', 'pt-BR'];
 const INSTAGRAM_URL = 'https://www.instagram.com/commandtwr';
 const DELVER_URL = 'https://twr-delver.vercel.app/';
-const COMMAND_TOWER_DOWNLOAD_URL = 'https://github.com/dimixd-githud/twr-command-tower-releases/releases/download/v1.3.0-alpha/TWR.-.Command.Tower.1.3.0-alpha.exe';
+const COMMAND_TOWER_DOWNLOAD_URL = 'https://github.com/dimixd-githud/twr-command-tower-releases/releases/download/v1.4.0-alpha/TWR.-.Command.Tower.1.4.0-alpha.exe';
 
 export function generateStaticParams() {
   return SUPPORTED.map((lang) => ({ lang }));
